@@ -1,0 +1,62 @@
+{# SET THE TITLE: 60 chars max #}
+{% if title is not defined %}
+  {% if entry is defined and entry['pageTitle'] is defined and entry.pageTitle is not empty %}
+    {% set title = entry.pageTitle %}
+  {% elseif entry is defined and not craft.app.request.absoluteUrl == siteUrl %}
+    {% set title = entry.title ~ ' - ' ~ siteName %}
+  {% else %}
+    {% set title = siteName %}
+  {% endif %}
+{% endif %}
+{# SET THE DESCRIPTION: 160 chars max #}
+{% if description is not defined %}
+  {% if entry is defined and entry['pageDescription'] is defined and entry.pageDescription is not empty %}
+    {% set description = entry.pageDescription %}
+  {% else %}
+     {% set description = '' %}
+  {% endif %}
+{% endif %}
+{# SET THE IMAGE #}
+{% if image is not defined %}
+  {% set imageWidth = 1200 %}
+  {% set imageHeight = 630 %}
+  {% if entry is defined and entry['summaryImage'] is defined and entry.summaryImage.one is not empty %}
+    {% set image = entry.summaryImage.one.url({ width: imageWidth, height: imageHeight }) %}
+  {% else %}
+    {# This should be customised with a default for the website #}
+    {% set image =  'assets/imgs/web-icons/default.jpg' %}
+  {% endif %}
+{% endif %}
+
+{# SEO #}
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}">
+    {% if image is defined %}<meta name="image" content="{{ image }}">{% endif %}
+
+    {# Tell search engines and bots not to index the staging site #}
+{% if craft.app.config.general.devMode %}<meta name="robots" content="nofollow, noindex">{% endif %}
+
+    {# Allows clients to verify their site for the Search Console with a token rather
+    than the usual Google Analytics verification #}
+    {% if seo['googleSiteVerification'] is defined %}
+      <meta name="google-site-verification" content="{{ seo.googleSiteVerification is not empty ? seo.googleSiteVerification }}">
+    {% endif %}
+
+    {# SCHEMA.ORG for Google #}
+<meta itemprop="name" content="{{ title }}">
+    <meta itemprop="description" content="{{ description }}">
+    {% if image is defined %}<meta itemprop="image" content="{{ image }}">{% endif %}
+
+    {# OPEN GRAPH (Facebook, Pinterest & Google+) #}
+{% if entry is defined %}<meta property="og:url" content="{{ entry.url }}">{% endif %}
+
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    {% if image is defined %}
+<meta property="og:image" content="{{ image }}">
+    <meta property="og:image:width" content="{{ imageWidth }}">
+    <meta property="og:image:height" content="{{ imageHeight }}">
+    {% endif %}
+<meta property="og:site_name" content="{{ siteName }}">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:type" content="website">

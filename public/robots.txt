@@ -1,0 +1,7 @@
+# Don't allow web crawlers to index Craft CMS
+Sitemap: https://verorecruitment.com/sitemap.xml
+User-agent: *
+Disallow: /craft/
+Disallow: /admin/
+Disallow: /login/
+Disallow: /admin/login/

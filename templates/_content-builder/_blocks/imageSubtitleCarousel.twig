@@ -1,0 +1,21 @@
+<div class="container imageSubtitleCarousel_block">
+    <div class="heading_wrap mt-3 mb-4"><h3>{{ block.heading }}</h3></div>
+    <div class="row mb-5 pb-5 justify-content-center align-items-center">
+        <span class="carousel_index" aria-hidden="true" data="{{loop.index -1}}"></span>
+        <button id="prev{{loop.index}}" class="prev_btn mr-5"><i class="fas fa-caret-square-left"></i></button>
+        <div class="slider">
+            {% for entry in block.imageSubtitle %}
+                <div class="slider_item">
+                    <div class="wrapper d-flex flex-column justify-content-between">
+                        <div class="image_zoom">
+                            <div class="fade_img"></div>
+                            <img class="img" src="assets/{{entry.image.one}}">
+                        </div>
+                        <div class="title_wrap"><h4>{{ entry.subtitle }}</h4></div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <button id="next{{loop.index}}" class="next_btn ml-5"><i class="fas fa-caret-square-right"></i></button>
+    </div>
+</div>

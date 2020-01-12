@@ -1,0 +1,19 @@
+<div class="container gallery_block my-5 py-5">
+    <div class="flexbin_wrap">
+        <div id="scroll_top" class="scroll_arrow">
+            <i class="fas fa-arrow-up"></i>
+        </div>
+        <div class="flexbin flexbin-margin">
+
+        {% for entry in block.images %}
+            <a href="">
+                <img class="img" src="assets/{{ entry }}">
+            </a>
+        {% endfor %}
+
+        </div>
+        <div id="scroll_bottom" class="scroll_arrow">
+            <i class="fas fa-arrow-down"></i>
+        </div>
+    </div>
+</div>

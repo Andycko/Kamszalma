@@ -1,0 +1,11 @@
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            {% for entry in navigation.navigation.all() %}
+                <div class="col-3">
+                    <a href="{{ entry.url }}">{{ entry.title }}</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</footer>

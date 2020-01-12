@@ -1,0 +1,31 @@
+<div class="container-fluid carousel_block">
+    <div class="titles_wrap d-flex flex-column justify-content-center align-items-center">
+        <div class="rellax" data-rellax-speed="3">
+            <h2 class="title mb-2" data-aos="zoom-in-down">{{ block.headingTop }}</h2>
+            <h2 class="title mb-2" data-aos="zoom-in">{{ block.headingMiddle }}</h2>
+            <h2 class="title" data-aos="zoom-in-up"><span>{{ block.headingBottom | split(' ')[0] }}</span> {{ block.headingBottom | split(' ')[1] }}</h2>
+        </div>
+    </div>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        {% for item in block.images.all() %}
+            {% if loop.first %}
+                <ol class="carousel-indicators">
+            {% endif %}
+                <li data-target="#carouselExampleIndicators" data-slide-to="{{ loop.index - 1 }}" class="{{ loop.first ? "active" }}"></li>
+            {% if loop.last %}
+                </ol>
+            {% endif %}
+        {% endfor %}
+        {% for item in block.images.all() %}
+            {% if loop.first %}
+                <div class="carousel-inner">
+            {% endif %}
+                <div class="carousel-item {{ loop.first ? "active" }}">
+                    <img class="d-block w-100" src="assets/{{ item }}" alt="{{loop.index}}. slide">
+                </div>
+            {% if loop.last %}
+                </div>
+            {% endif %}
+        {% endfor %} 
+    </div>
+</div>
