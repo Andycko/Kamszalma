@@ -70,6 +70,7 @@ p,
   text-decoration: none;
   transform: scale(1.1);
 }
+
 .carousel_block {
   position: relative;
   padding: unset;
@@ -252,7 +253,7 @@ p,
 }
 .gallery_block .flexbin_wrap #scroll_bottom {
   bottom: -50px;
-  clip-path: inset(50% 0 100% 0);
+  clip-path: inset(0 0 50% 0);
   padding-top: 7px;
   align-items: flex-start;
 }

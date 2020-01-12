@@ -21,7 +21,7 @@
                 <div class="carousel-inner">
             {% endif %}
                 <div class="carousel-item {{ loop.first ? "active" }}">
-                    <img class="d-block w-100" src="assets/{{ item }}" alt="{{loop.index}}. slide">
+                    <img class="d-block w-100" src="assets/{{ item }}.{{ item.extension }}" alt="{{loop.index}}. slide">
                 </div>
             {% if loop.last %}
                 </div>
